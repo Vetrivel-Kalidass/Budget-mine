@@ -1,20 +1,79 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Budget App</ion-title>
+
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form #expenseForm="ngForm" (ngSubmit)="createExpense(expenseForm)">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Create Expense</ion-card-title>
+          <ion-card-subtitle>create the expenses in your budget</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input type="text" autofocus></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Expenses reason</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Amount</ion-label>
+            <ion-input type="number"></ion-input>
+          </ion-item>
+          
+          <ion-button slot="secondary" type="submit" color="primary">Create</ion-button>
+
+        </ion-card-content>
+      </ion-card>
+    </form>
+    
   </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Speakers</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-button shape="round" color="primary">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-tab-button>
+
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
