@@ -1,10 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
 
-    <ion-buttons slot="secondary">
-      <ion-button>
-        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
 
     <ion-title>Budget App</ion-title>
@@ -15,37 +13,79 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <form #expenseForm="ngForm" (ngSubmit)="createExpense(expenseForm)">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Create Expense</ion-card-title>
-          <ion-card-subtitle>create the expenses in your budget</ion-card-subtitle>
-        </ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Create Expense</ion-card-title>
+              <ion-card-subtitle>create the expenses in your budget</ion-card-subtitle>
+            </ion-card-header>
+            
+            <ion-card-content>
+              
+                <form #expenseForm="ngForm" (ngSubmit)="createExpense(expenseForm)">
+                <ion-item>
+                  <ion-label position="floating">Title</ion-label>
+                  <ion-input type="text" autofocus name="title" ngModel required></ion-input>
+                </ion-item>
+        
+                <ion-item>
+                  <ion-label position="floating">Expenses reason</ion-label>
+                  <ion-textarea name="reason" ngModel></ion-textarea>
+                </ion-item>
+        
+                <ion-item>
+                  <ion-label position="floating">Amount</ion-label>
+                  <ion-input type="number" name="amount" ngModel required></ion-input>
+                </ion-item>
+                
+                <div class="ion-text-end ion-padding-top">
+                  <ion-button type="submit" color="primary">Create</ion-button>
+                </div>
       
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Title</ion-label>
-            <ion-input type="text" autofocus></ion-input>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label position="floating">Expenses reason</ion-label>
-            <ion-textarea></ion-textarea>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label position="floating">Amount</ion-label>
-            <ion-input type="number"></ion-input>
-          </ion-item>
-          
-          <ion-button slot="secondary" type="submit" color="primary">Create</ion-button>
-
-        </ion-card-content>
-      </ion-card>
-    </form>
+              </form>
+              </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col size-md="6">
+          <!-- List of Input Items -->
+          <ion-list>
+            <!-- List Header Full Lines -->
+            <ion-list-header lines="full">
+              <ion-label>Expenses</ion-label>
+              <ion-button (click)="expenseList = []">Clear all</ion-button>
+            </ion-list-header>
     
+            <ion-item *ngFor="let exp of expenseList">
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-row class="ion-justify-content-between">
+                <ion-col size="8">
+                  <ion-label>{{ exp.title }}</ion-label>
+                </ion-col>
+                <ion-col size="4" class="text-right">
+                  <ion-label>Rs. {{ exp.amount }}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+            <ion-item>
+              <ion-row class="ion-justify-content-between">
+                <ion-col size="8">
+                  <ion-label>Total</ion-label>
+                </ion-col>
+                <ion-col size="4" class="text-right">
+                  <ion-label>Rs. {{ totalExpAmt }}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+
   </div>
-  <ion-tabs>
+  <!-- <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule">
         <ion-icon name="calendar"></ion-icon>
@@ -75,5 +115,5 @@
         <ion-label>About</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
+  </ion-tabs> -->
 </ion-content>
